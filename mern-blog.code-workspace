@@ -1,0 +1,25 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": ".",
+    },
+    {
+      "name": "client",
+      "path": "client",
+    },
+    {
+      "name": "server",
+      "path": "server",
+    },
+  ],
+  "settings": {},
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "stivo.tailwind-fold",
+    ],
+  },
+}

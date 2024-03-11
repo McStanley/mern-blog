@@ -1,0 +1,35 @@
+{
+  "name": "mern-blog-server",
+  "version": "0.0.0",
+  "private": true,
+  "author": {
+    "name": "Stanisław Olejniczak",
+    "email": "0stanislawolejniczak0@gmail.com",
+    "url": "https://github.com/McStanley"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc --build --verbose",
+    "clean": "rimraf ./dist",
+    "dev": "nodemon ./src/index.ts",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "express": "^4.18.3",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-packagejson": "^2.4.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}

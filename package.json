@@ -1,0 +1,23 @@
+{
+  "name": "mern-blog",
+  "version": "0.0.0",
+  "private": true,
+  "author": {
+    "name": "Stanisław Olejniczak",
+    "email": "0stanislawolejniczak0@gmail.com",
+    "url": "https://github.com/McStanley"
+  },
+  "scripts": {
+    "build": "conc -c auto \"npm:build:*\"",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "dev": "conc -c auto \"npm:dev:*\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-packagejson": "^2.4.12"
+  }
+}
