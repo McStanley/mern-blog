@@ -1,17 +1,25 @@
 #!/usr/bin/env node
 
 /**
+ * Load environment variables.
+ */
+
+import 'dotenv/config';
+import env from './env';
+
+/**
  * Module dependencies.
  */
 
 import app from './app';
 import http from 'http';
+import mongoose from 'mongoose';
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(env.PORT);
 app.set('port', port);
 
 /**
@@ -27,6 +35,19 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+/**
+ * Establish database connection.
+ */
+
+mongoose
+  .connect(env.MONGODB_URI, {
+    dbName: 'blog',
+  })
+  .catch((err: Error) => console.error(err.toString()));
+
+mongoose.connection.on('error', (err: Error) => console.error(err.toString()));
+mongoose.connection.on('connected', () => console.log('MongoDB: Connected'));
 
 /**
  * Normalize a port into a number, string, or false.
