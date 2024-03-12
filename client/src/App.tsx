@@ -1,7 +1,35 @@
+import { useState } from 'react';
+import Header from './components/Header';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+
 function App() {
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+
+  const toggleModals = () => {
+    setShowSignIn((v) => !v);
+    setShowSignUp((v) => !v);
+  };
+
   return (
     <>
-      <h1>MERN Blog</h1>
+      <Header
+        openSignIn={() => setShowSignIn(true)}
+        openSignUp={() => setShowSignUp(true)}
+      />
+      {showSignIn && (
+        <SignIn
+          closeModal={() => setShowSignIn(false)}
+          toggleModals={toggleModals}
+        />
+      )}
+      {showSignUp && (
+        <SignUp
+          closeModal={() => setShowSignUp(false)}
+          toggleModals={toggleModals}
+        />
+      )}
     </>
   );
 }
