@@ -10,7 +10,7 @@ function AuthSubmit({ disabled, children }: AuthSubmitProps) {
     <button
       type="submit"
       disabled={disabled}
-      className="bg-react-500 hover:bg-react-600 active:bg-react-700 disabled:text-react-400 disabled:bg-react-100 mt-4 w-full rounded-full px-4 py-2 text-white duration-100 disabled:cursor-not-allowed"
+      className="mt-4 w-full rounded-full bg-react-500 px-4 py-2 text-white duration-100 hover:bg-react-600 active:bg-react-700 disabled:cursor-not-allowed disabled:bg-react-100 disabled:text-react-400"
     >
       {children}
     </button>

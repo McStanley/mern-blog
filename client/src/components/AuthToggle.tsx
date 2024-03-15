@@ -10,7 +10,7 @@ function AuthToggle({ toggleModals, children }: AuthToggleProps) {
     <button
       type="button"
       onClick={toggleModals}
-      className="border-react-600 text-react-600 hover:border-react-700 hover:text-react-700 active:border-react-800 active:text-react-800 mt-4 w-full rounded-full border px-4 py-2 duration-100"
+      className="mt-4 w-full rounded-full border border-react-600 px-4 py-2 text-react-600 duration-100 hover:border-react-700 hover:text-react-700 active:border-react-800 active:text-react-800"
     >
       {children}
     </button>

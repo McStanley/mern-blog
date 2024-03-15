@@ -9,6 +9,13 @@ const env = cleanEnv(process.env, {
     example:
       'mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority',
   }),
+  SESSION_SECRET: str({
+    desc: 'express-session secret',
+    docs: 'https://www.npmjs.com/package/express-session',
+  }),
+  CORS_ORIGIN: str({
+    devDefault: 'http://localhost:5173',
+  }),
 });
 
 export default env;

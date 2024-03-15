@@ -8,7 +8,7 @@ interface NavButtonProps {
 function NavButton({ onClick, children }: NavButtonProps) {
   return (
     <button
-      className="bg-react-500 hover:bg-react-600 active:bg-react-700 rounded-full px-3 py-1 text-white duration-100"
+      className="rounded-full bg-react-500 px-3 py-1 text-white duration-100 hover:bg-react-600 active:bg-react-700"
       type="button"
       onClick={onClick}
     >

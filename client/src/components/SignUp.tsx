@@ -1,9 +1,13 @@
-import { useId, useState } from 'react';
+import { isAxiosError } from 'axios';
+import { FormEventHandler, useId, useState } from 'react';
+import toast from 'react-hot-toast';
 import Overlay from './Overlay';
 import AuthLabel from './AuthLabel';
 import AuthInput from './AuthInput';
 import AuthSubmit from './AuthSubmit';
 import AuthToggle from './AuthToggle';
+import { IUser } from '../contexts/User';
+import api from '../utils/api';
 
 interface SignUpProps {
   closeModal: () => void;
@@ -18,8 +22,50 @@ function SignUp({ closeModal, toggleModals }: SignUpProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConf, setPasswordConf] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const submitDisabled = !username || !password || !passwordConf;
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      toast.loading('Signing up...', {
+        id: 'signup',
+      });
+
+      const res = await api.post<{ user: IUser }>('/auth/sign-up', {
+        username,
+        password,
+        passwordConf,
+      });
+
+      toast.success(`Signed up as ${res.data.user.username}`, {
+        id: 'signup',
+      });
+
+      closeModal();
+    } catch (error) {
+      if (isAxiosError(error)) {
+        if (error.response?.status === 400) {
+          toast.error(error.response.data.errors[0].msg, {
+            id: 'signup',
+          });
+        } else {
+          toast.error('Operation failed', {
+            id: 'signup',
+          });
+        }
+      } else {
+        toast.error('Operation failed', {
+          id: 'signup',
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const submitDisabled = !username || !password || !passwordConf || isLoading;
 
   return (
     <Overlay handleClick={closeModal}>
@@ -35,12 +81,7 @@ function SignUp({ closeModal, toggleModals }: SignUpProps) {
         <p className="mt-4 text-center text-lg text-gray-700">
           Create an account to be able to leave comments under posts.
         </p>
-        <form
-          className="mt-4 flex flex-col"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <form className="mt-4 flex flex-col" onSubmit={handleSubmit}>
           <AuthLabel id={userInputId}>Username</AuthLabel>
           <AuthInput
             type="text"
