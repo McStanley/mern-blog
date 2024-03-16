@@ -6,8 +6,8 @@ import AuthLabel from './AuthLabel';
 import AuthInput from './AuthInput';
 import AuthSubmit from './AuthSubmit';
 import AuthToggle from './AuthToggle';
-import { IUser } from '../contexts/User';
 import api from '../utils/api';
+import User from '../types/User';
 
 interface SignInProps {
   closeModal: () => void;
@@ -31,7 +31,7 @@ function SignIn({ closeModal, toggleModals }: SignInProps) {
         id: 'signin',
       });
 
-      const res = await api.post<{ user: IUser }>('/auth/sign-in', {
+      const res = await api.post<{ user: User }>('/auth/sign-in', {
         username,
         password,
       });

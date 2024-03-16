@@ -8,6 +8,7 @@ import session from './middleware/session';
 import appendUser from './middleware/appendUser';
 
 import authRouter from './routes/auth';
+import postsRouter from './routes/posts';
 
 import './auth/setupPassport';
 
@@ -34,5 +35,6 @@ app.use(passport.session());
 app.use(appendUser);
 
 app.use('/auth', authRouter);
+app.use('/posts', postsRouter);
 
 export default app;

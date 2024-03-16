@@ -1,12 +1,13 @@
 import { ReactNode, useMemo, useState } from 'react';
-import UserContext, { IUser } from '../contexts/User';
+import UserContext from '../contexts/User';
+import User from '../types/User';
 
 interface UserProviderProps {
   children: ReactNode;
 }
 
 function UserProvider({ children }: UserProviderProps) {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const value = useMemo(() => ({ user, setUser }), [user]);
 

@@ -6,8 +6,8 @@ import AuthLabel from './AuthLabel';
 import AuthInput from './AuthInput';
 import AuthSubmit from './AuthSubmit';
 import AuthToggle from './AuthToggle';
-import { IUser } from '../contexts/User';
 import api from '../utils/api';
+import User from '../types/User';
 
 interface SignUpProps {
   closeModal: () => void;
@@ -33,7 +33,7 @@ function SignUp({ closeModal, toggleModals }: SignUpProps) {
         id: 'signup',
       });
 
-      const res = await api.post<{ user: IUser }>('/auth/sign-up', {
+      const res = await api.post<{ user: User }>('/auth/sign-up', {
         username,
         password,
         passwordConf,

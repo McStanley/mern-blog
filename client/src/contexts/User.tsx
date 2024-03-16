@@ -1,13 +1,9 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
-
-export interface IUser {
-  _id: string;
-  username: string;
-}
+import User from '../types/User';
 
 interface IUserContext {
-  user: IUser | null;
-  setUser: Dispatch<SetStateAction<IUser | null>>;
+  user: User | null;
+  setUser: Dispatch<SetStateAction<User | null>>;
 }
 
 const UserContext = createContext<IUserContext>({} as IUserContext);
