@@ -5,7 +5,7 @@ interface Post {
   title: string;
   content: string;
   author: User;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export default Post;

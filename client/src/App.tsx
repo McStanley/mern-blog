@@ -1,8 +1,9 @@
 import { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
+import Post from './pages/Post';
 import Header from './components/Header';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
@@ -10,8 +11,6 @@ import useUser from './hooks/useUser';
 import api from './utils/api';
 import objectsEqual from './utils/objectsEqual';
 import User from './types/User';
-
-const router = createBrowserRouter([{ path: '/', element: <Home /> }]);
 
 function App() {
   const { user, setUser } = useUser();
@@ -41,14 +40,14 @@ function App() {
     setShowSignUp((v) => !v);
   };
 
-  return (
+  const layout = (
     <>
       <Header
         openSignIn={() => setShowSignIn(true)}
         openSignUp={() => setShowSignUp(true)}
       />
       <div className="mx-auto my-6 max-w-7xl px-8">
-        <RouterProvider router={router} />
+        <Outlet />
       </div>
       {showSignIn && (
         <SignIn
@@ -65,6 +64,20 @@ function App() {
       <Toaster />
     </>
   );
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: layout,
+      children: [
+        { path: '/', element: <Home /> },
+        { path: 'posts/:id', element: <Post /> },
+        { path: '*', element: <div>Page does not exist</div> },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

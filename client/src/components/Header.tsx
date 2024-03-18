@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import NavButton from './NavButton';
 import useUser from '../hooks/useUser';
 import api from '../utils/api';
@@ -20,7 +21,9 @@ function Header({ openSignIn, openSignUp }: HeaderProps) {
 
   return (
     <header className="flex justify-between border-b px-4 py-2 lg:px-8 lg:py-3">
-      <h1 className="text-3xl font-medium text-react-600">MERN Blog</h1>
+      <Link to="/">
+        <h1 className="text-3xl font-medium text-react-600">MERN Blog</h1>
+      </Link>
       <nav className="flex items-center">
         <ul className="flex gap-4">
           {!user && (
