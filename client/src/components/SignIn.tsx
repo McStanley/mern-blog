@@ -3,7 +3,7 @@ import { FormEventHandler, useId, useState } from 'react';
 import toast from 'react-hot-toast';
 import Overlay from './Overlay';
 import AuthLabel from './AuthLabel';
-import AuthInput from './AuthInput';
+import Input from './Input';
 import AuthSubmit from './AuthSubmit';
 import AuthToggle from './AuthToggle';
 import api from '../utils/api';
@@ -76,7 +76,7 @@ function SignIn({ closeModal, toggleModals }: SignInProps) {
         </p>
         <form className="mt-4 flex flex-col" onSubmit={handleSubmit}>
           <AuthLabel id={userInputId}>Username</AuthLabel>
-          <AuthInput
+          <Input
             type="text"
             name="username"
             id={userInputId}
@@ -85,7 +85,7 @@ function SignIn({ closeModal, toggleModals }: SignInProps) {
           />
 
           <AuthLabel id={pwInputId}>Password</AuthLabel>
-          <AuthInput
+          <Input
             type="password"
             name="password"
             id={pwInputId}

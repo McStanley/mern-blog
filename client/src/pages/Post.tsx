@@ -1,6 +1,7 @@
 import { isAxiosError } from 'axios';
 import { useParams } from 'react-router-dom';
 import useSWR, { Fetcher } from 'swr';
+import Comments from '../components/Comments';
 import api from '../utils/api';
 import Post from '../types/Post';
 
@@ -9,7 +10,11 @@ const fetcher: Fetcher<Post, string> = async (url) => {
   return res.data.post;
 };
 
-function Post() {
+interface PostProps {
+  openSignIn: () => void;
+}
+
+function Post({ openSignIn }: PostProps) {
   const { id } = useParams() as { id: string };
   const {
     data: post,
@@ -78,6 +83,8 @@ function Post() {
       <p className="mx-auto mt-9 max-w-prose text-justify leading-relaxed">
         {post.content}
       </p>
+      <div className="mt-8 text-center text-2xl">~</div>
+      <Comments postId={id} openSignIn={openSignIn} />
     </main>
   );
 }

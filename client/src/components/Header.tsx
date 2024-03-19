@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import NavButton from './NavButton';
+import Button from './Button';
 import useUser from '../hooks/useUser';
 import api from '../utils/api';
 
@@ -29,19 +29,19 @@ function Header({ openSignIn, openSignUp }: HeaderProps) {
           {!user && (
             <>
               <li>
-                <NavButton onClick={openSignIn}>Sign in</NavButton>
+                <Button onClick={openSignIn}>Sign in</Button>
               </li>
               <li className="hidden md:inline-block">
-                <NavButton onClick={openSignUp}>Sign up</NavButton>
+                <Button onClick={openSignUp}>Sign up</Button>
               </li>
             </>
           )}
           {!!user && (
             <li>
-              <NavButton onClick={handleLogout}>
+              <Button onClick={handleLogout}>
                 Log out{' '}
                 <span className="hidden md:inline">{user.username}</span>
-              </NavButton>
+              </Button>
             </li>
           )}
         </ul>

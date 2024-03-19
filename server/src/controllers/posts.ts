@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import { isValidObjectId } from 'mongoose';
 import Post from '../models/Post';
+import Comment from '../models/Comment';
 
 export const getAll = asyncHandler(async (req, res, next) => {
   const posts = await Post.find().populate('author', { username: 1 });
@@ -23,4 +24,14 @@ export const getOne = asyncHandler(async (req, res, next) => {
   }
 
   res.json({ post });
+});
+
+export const getComments = asyncHandler(async (req, res, next) => {
+  const { id } = req.params as { id: string };
+
+  const comments = await Comment.find({ post: id })
+    .sort({ createdAt: -1 })
+    .populate('author', { password: 0 });
+
+  res.json({ comments });
 });

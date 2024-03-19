@@ -9,6 +9,7 @@ import appendUser from './middleware/appendUser';
 
 import authRouter from './routes/auth';
 import postsRouter from './routes/posts';
+import commentsRouter from './routes/comments';
 
 import './auth/setupPassport';
 
@@ -36,5 +37,6 @@ app.use(appendUser);
 
 app.use('/auth', authRouter);
 app.use('/posts', postsRouter);
+app.use('/comments', commentsRouter);
 
 export default app;

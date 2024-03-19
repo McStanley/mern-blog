@@ -71,7 +71,10 @@ function App() {
       element: layout,
       children: [
         { path: '/', element: <Home /> },
-        { path: 'posts/:id', element: <Post /> },
+        {
+          path: 'posts/:id',
+          element: <Post openSignIn={() => setShowSignIn(true)} />,
+        },
         { path: '*', element: <div>Page does not exist</div> },
       ],
     },
