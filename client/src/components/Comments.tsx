@@ -1,4 +1,6 @@
+import { isAxiosError } from 'axios';
 import { FormEventHandler, useState } from 'react';
+import toast from 'react-hot-toast';
 import useSWR, { Fetcher } from 'swr';
 import Input from './Input';
 import Button from './Button';
@@ -28,12 +30,34 @@ function Comments({ postId, openSignIn }: CommentsProps) {
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setDisabled(true);
+    toast.dismiss();
 
-    await api.post('/comments', { post: postId, content: comment });
+    try {
+      await api.post('/comments', { post: postId, content: comment });
+      setComment('');
+      mutate();
+    } catch (error) {
+      interface ErrorData {
+        error?: string;
+        errors?: Array<{ msg: string }>;
+      }
 
-    setComment('');
-    setDisabled(false);
-    mutate();
+      if (isAxiosError<ErrorData>(error) && error.response) {
+        if (error.response.data.error) {
+          toast.error(error.response.data.error);
+        }
+
+        if (error.response.data.errors) {
+          error.response.data.errors.forEach((err) => {
+            toast.error(err.msg);
+          });
+        }
+      } else {
+        toast.error('Try again later...');
+      }
+    } finally {
+      setDisabled(false);
+    }
   };
 
   const form = (
