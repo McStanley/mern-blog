@@ -17,6 +17,10 @@ import env from './env';
 
 const app = express();
 
+if (env.isProd) {
+  app.set('trust proxy', 1);
+}
+
 app.use(logger('dev'));
 
 app.use(
