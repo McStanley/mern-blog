@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import useSWR, { Fetcher } from 'swr';
 import Comments from '../components/Comments';
 import api from '../utils/api';
-import Post from '../types/Post';
+import type Post from '../types/Post';
 
 const fetcher: Fetcher<Post, string> = async (url) => {
   const res = await api.get<{ post: Post }>(url);

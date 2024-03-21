@@ -1,6 +1,6 @@
 import { ReactNode, useMemo, useState } from 'react';
 import UserContext from '../contexts/User';
-import User from '../types/User';
+import type User from '../types/User';
 
 interface UserProviderProps {
   children: ReactNode;

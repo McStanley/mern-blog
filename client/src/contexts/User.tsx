@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
-import User from '../types/User';
+import type User from '../types/User';
 
 interface IUserContext {
   user: User | null;

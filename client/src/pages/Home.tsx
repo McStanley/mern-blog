@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 import api from '../utils/api';
-import Post from '../types/Post';
+import type Post from '../types/Post';
 
 function Home() {
   const [posts, setPosts] = useState<Post[] | null>(null);

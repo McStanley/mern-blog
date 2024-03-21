@@ -7,7 +7,7 @@ import Input from './Input';
 import AuthSubmit from './AuthSubmit';
 import AuthToggle from './AuthToggle';
 import api from '../utils/api';
-import User from '../types/User';
+import type User from '../types/User';
 
 interface SignInProps {
   closeModal: () => void;

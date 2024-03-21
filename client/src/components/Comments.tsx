@@ -6,7 +6,7 @@ import Input from './Input';
 import Button from './Button';
 import useUser from '../hooks/useUser';
 import api from '../utils/api';
-import Comment from '../types/Comment';
+import type Comment from '../types/Comment';
 
 const fetcher: Fetcher<Comment[], string> = async (url) => {
   const res = await api.get<{ comments: Comment[] }>(url);

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Post from '../types/Post';
+import type Post from '../types/Post';
 
 interface PostCardProps {
   post: Post;

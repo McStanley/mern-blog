@@ -10,7 +10,7 @@ import SignUp from './components/SignUp';
 import useUser from './hooks/useUser';
 import api from './utils/api';
 import objectsEqual from './utils/objectsEqual';
-import User from './types/User';
+import type User from './types/User';
 
 function App() {
   const { user, setUser } = useUser();
