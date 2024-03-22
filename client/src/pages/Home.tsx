@@ -1,17 +1,23 @@
-import { useEffect, useState } from 'react';
+import useSWR, { Fetcher } from 'swr';
 import PostCard from '../components/PostCard';
 import api from '../utils/api';
 import type Post from '../types/Post';
 
-function Home() {
-  const [posts, setPosts] = useState<Post[] | null>(null);
+const fetcher: Fetcher<Post[], string> = async (url) => {
+  const res = await api.get<{ posts: Post[] }>(url);
+  return res.data.posts;
+};
 
-  useEffect(() => {
-    (async () => {
-      const res = await api.get<{ posts: Post[] | null }>('/posts');
-      setPosts(res.data.posts);
-    })();
-  }, []);
+function Home() {
+  const { data: posts, error, isLoading } = useSWR('/posts', fetcher);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>There was an error.</p>;
+  }
 
   const postElements = posts
     ? posts.map((post) => <PostCard post={post} key={post._id} />)
