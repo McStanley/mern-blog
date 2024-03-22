@@ -1,4 +1,5 @@
 import useSWR, { Fetcher } from 'swr';
+import Loading from '../components/Loading';
 import PostCard from '../components/PostCard';
 import api from '../utils/api';
 import type Post from '../types/Post';
@@ -12,7 +13,7 @@ function Home() {
   const { data: posts, error, isLoading } = useSWR('/posts', fetcher);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {

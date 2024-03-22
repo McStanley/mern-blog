@@ -46,7 +46,7 @@ function App() {
         openSignIn={() => setShowSignIn(true)}
         openSignUp={() => setShowSignUp(true)}
       />
-      <div className="mx-auto my-6 max-w-7xl px-8">
+      <div className="mx-auto my-6 flex max-w-7xl flex-1 px-8">
         <Outlet />
       </div>
       {showSignIn && (

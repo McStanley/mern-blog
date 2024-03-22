@@ -1,6 +1,7 @@
 import { isAxiosError } from 'axios';
 import { useParams } from 'react-router-dom';
 import useSWR, { Fetcher } from 'swr';
+import Loading from '../components/Loading';
 import Comments from '../components/Comments';
 import api from '../utils/api';
 import type Post from '../types/Post';
@@ -23,7 +24,7 @@ function Post({ openSignIn }: PostProps) {
   } = useSWR<Post>(`/posts/${id}`, fetcher);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {
