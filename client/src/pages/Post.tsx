@@ -81,7 +81,7 @@ function Post({ openSignIn }: PostProps) {
           </p>
         </div>
       </div>
-      <p className="mx-auto mt-9 max-w-prose text-justify leading-relaxed">
+      <p className="mx-auto mt-9 max-w-prose whitespace-pre-wrap text-justify leading-relaxed break-anywhere">
         {post.content}
       </p>
       <div className="mt-8 text-center text-2xl">~</div>

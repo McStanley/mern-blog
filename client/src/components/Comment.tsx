@@ -44,7 +44,7 @@ function Comment({ comment }: CommentProps) {
             </div>
           </div>
         </div>
-        <p className="mt-3 break-words">{comment.content}</p>
+        <p className="mt-3 break-anywhere">{comment.content}</p>
       </div>
       <div className="absolute top-0 -ml-1.5 h-4 w-4 rounded-full bg-react-600"></div>
     </div>
